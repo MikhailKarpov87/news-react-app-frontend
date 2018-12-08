@@ -1,3 +1,4 @@
+//  Коды/тексты ошибок для отображения
 export const errors = [
   { en: "Title must not be empty", ru: "Заголовок не может быть пустым" },
   { en: "Content must not be empty", ru: "Контент не может быть пустым" },
@@ -24,7 +25,8 @@ export const errors = [
     ru: "Пароль должен быть минимум 6 символов"
   },
   { en: "Password must not be empty", ru: "Пароль не должен быть пустым" },
-  { en: "Username must not be empty", ru: "Имя пользователя не должно быть пустым" }
+  { en: "Username must not be empty", ru: "Имя пользователя не должно быть пустым" },
+  { en: "jwt expired", ru: "Токен авторизации устарел. Попробуйте войти еще раз" }
 ];
 
 export const getErrorText = message => {

@@ -21,7 +21,7 @@ class PostFull extends Component {
     news: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
     isDeleted: PropTypes.string,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired
   };
@@ -79,8 +79,12 @@ class PostFull extends Component {
               <Link to={`/news/${_id}/edit`}>
                 <button className="edit-button">Редактировать</button>
               </Link>
+
               <button
-                onClick={() => window.confirm("Вы уверены?") && deletePost(id, history)}
+                onClick={() =>
+                  window.confirm("Вы уверены?") &&
+                  deletePost(id, history).then(res => console.log(res))
+                }
                 className="delete-button"
               >
                 Удалить

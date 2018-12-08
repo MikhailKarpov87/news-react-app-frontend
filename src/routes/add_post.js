@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { addPost } from "../actions";
@@ -20,7 +21,7 @@ class AddPost extends Component {
     }),
     news: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     addPost: PropTypes.func.isRequired
   };
 
@@ -44,46 +45,50 @@ class AddPost extends Component {
       return <Info message="У вас нет доступа к этой странице" />;
     }
 
-    if (errorMessage) {
-      return <Info message={getErrorText(errorMessage)} />;
-    }
-
     return (
-      <form onSubmit={handleSubmit(event => addPost(event).then(res => history.push("/news")))}>
-        <div className="content-container">
-          <h2>Добавить новость</h2>
-          <div className="post-container">
-            <div className="post-header">
-              <div className="post-title">
-                <Field
-                  component={renderTitleField}
-                  type="text"
-                  name="title"
-                  placeholder="Введите заголовок"
-                  validate={required}
-                  key="title"
-                />
-              </div>
-            </div>
+      <div className="content-container">
+        <h2>Добавить новость</h2>
 
-            <div className="post-body">
-              <Field
-                component={renderContentField}
-                name="content"
-                validate={required}
-                key="content"
-              />
-            </div>
+        <form
+          onSubmit={handleSubmit(event =>
+            addPost(event).then(res => res.type === "ADD_POST_SUCCESS" && history.push("/news"))
+          )}
+        >
+          <div className="post-container">
+            <Field
+              component={renderTitleField}
+              type="text"
+              name="title"
+              label="Введите заголовок"
+              validate={required}
+              key="title"
+            />
+
+            <Field
+              component={renderContentField}
+              name="content"
+              label="Введите текст новости"
+              validate={required}
+              key="content"
+            />
+
+            {errorMessage && <div className="error-message">{getErrorText(errorMessage)}</div>}
           </div>
 
           <div className="bottom-buttons">
-            <button type="submit" className="edit-button" disabled={submitting || pristine}>
+            <button
+              type="submit"
+              className="edit-button"
+              disabled={submitting || pristine || errorMessage}
+            >
               Сохранить
             </button>
-            <button className="delete-button">Отменить</button>
+            <Link to={`/news`}>
+              <button className="delete-button">Отменить</button>
+            </Link>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     );
   }
 }

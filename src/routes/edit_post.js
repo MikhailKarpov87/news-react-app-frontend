@@ -21,7 +21,7 @@ class EditPost extends Component {
     }),
     news: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     getPost: PropTypes.func.isRequired,
     editPost: PropTypes.func.isRequired
   };
@@ -51,7 +51,6 @@ class EditPost extends Component {
       },
       news,
       user,
-      error,
       errorMessage,
       isLoading,
       handleSubmit,
@@ -60,62 +59,62 @@ class EditPost extends Component {
       history
     } = this.props;
 
-    if (isLoading && !errorMessage) {
+    if (isLoading) {
       return <Spinner />;
     }
 
-    //  Показываем ошибку, если есть errorMessage или новость с указанным id не найдена
-    if (errorMessage || !news.find(news => news._id === id)) {
-      return <Info message={getErrorText(errorMessage) || "Новость не найдена"} />;
+    //  Показываем ошибку, если новость с указанным id не найдена
+    if (!news.find(news => news._id === id)) {
+      return <Info message="Новость не найдена" />;
     }
 
     const post = news.find(post => post._id === id);
 
+    //  Если пользователь не является автором или не залогинен - выдаем ошибку
     if (!user.isAuth || user.userId !== post.creator._id) {
       return <Info message="У вас нет доступа к этой странице" />;
     }
 
     return (
-      <form
-        onSubmit={handleSubmit(event =>
-          editPost(post._id, event).then(() => history.push(`/news/${id}`))
-        )}
-      >
-        <div className="content-container">
-          <div className="post-container">
-            <div className="post-header">
-              <div className="post-title">
-                <Field
-                  component={renderTitleField}
-                  type="text"
-                  name="title"
-                  placeholder="Введите заголовок"
-                  validate={required}
-                  key="title"
-                />
-              </div>
-            </div>
+      <div className="content-container">
+        <h2>Редактировать новость</h2>
 
-            <div className="post-body">
-              <Field
-                component={renderContentField}
-                name="content"
-                validate={required}
-                key="content"
-              />
-            </div>
+        <form
+          onSubmit={handleSubmit(event =>
+            editPost(post._id, event).then(
+              res => res.type === "EDIT_POST_SUCCESS" && history.push(`/news/${id}`)
+            )
+          )}
+        >
+          <div className="post-container">
+            <Field
+              component={renderTitleField}
+              type="text"
+              name="title"
+              placeholder="Введите заголовок"
+              validate={required}
+              key="title"
+            />
+
+            <Field
+              component={renderContentField}
+              name="content"
+              validate={required}
+              key="content"
+            />
+            {errorMessage && <div className="error-message">{getErrorText(errorMessage)}</div>}
           </div>
 
           <div className="bottom-buttons">
-            <button type="submit" className="edit-button" disabled={submitting || error}>
+            <button type="submit" className="edit-button" disabled={submitting || errorMessage}>
               Сохранить
             </button>
             <Link to={`/news/${post._id}`}>
               <button className="delete-button">Отменить</button>
             </Link>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     );
   }
 }

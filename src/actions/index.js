@@ -10,7 +10,7 @@ import {
 } from "../helpers/auth_helpers";
 
 //  Получаем JWT токен из localStorage и устанавливаем его
-//  в качестве default хедера для всех запросов Axios
+//  в качестве default хедера для Axios запросов
 axios.defaults.headers.common["x-access-token"] = readFromLocalStorage().token || null;
 
 function startLoading() {
@@ -41,8 +41,8 @@ export function signIn() {
 
 export function loginSuccess(token, googleToken, userName, userId) {
   writeToLocalStorage(token, googleToken, userName, userId);
-
   axios.defaults.headers.common["x-access-token"] = token;
+
   return {
     type: t.LOGIN_SUCCESS,
     payload: { token, googleToken, userName, userId }
@@ -155,7 +155,7 @@ function addPostFailed(err) {
 }
 
 //  Delete Post
-export function deletePost(id, history) {
+export function deletePost(id) {
   return dispatch => {
     dispatch(startLoading());
     return axios

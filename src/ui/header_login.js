@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { signIn, signOut } from "../actions/";
-import { initGoogleAPI } from "../helpers/auth_helpers";
 
 class Login extends Component {
   static propTypes = {
@@ -19,12 +18,9 @@ class Login extends Component {
     signOut: PropTypes.func.isRequired
   };
 
-  componentDidMount() {
-    initGoogleAPI();
-  }
-
   render() {
     const { user } = this.props;
+
     return user.isAuth ? (
       <div className="header-login">
         <span>

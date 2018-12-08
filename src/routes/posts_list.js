@@ -18,7 +18,7 @@ class PostsList extends Component {
     }),
     news: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     getNews: PropTypes.func.isRequired
   };
 

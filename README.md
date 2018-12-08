@@ -1,5 +1,9 @@
 # [Тестовое задание #3](https://maxpfrontend.ru/zametki/testovoe-zadanie-3/)
 
+React/Redux приложение ленты новостей с Google Sign In авторизацией
+
+<img width="40%" src="https://s3.eu-central-1.amazonaws.com/github--projects/screen1.jpg" />
+
 ### О себе
 
 - Имя, возраст и откуда вы?
@@ -39,9 +43,11 @@
 ### Установка
 
 - У вас должен быть установлен [Node](https://nodejs.org/en/)
-- И запущен [Бэкенд](https://github.com/maxfarseer/backend-tz3)
+- И запущен [бэкенд](https://github.com/maxfarseer/backend-tz3)
 - `git clone` или скачайте этот репозиторий
 - `npm install` для установки зависимостей
-- Сохраните свой Google Client ID в файле `/.env`
+- Проверьте URL для бэкенда в файле `/src/config.js`
+- Сохраните свой Google Client ID в файле `/.env`:  
+  `REACT_APP_GOOGLE_CLIENT_ID=yourclientid.googleusercontent.com`
 - `npm start` для запуска локального dev-сервера
 - `npm run build` для production сборки

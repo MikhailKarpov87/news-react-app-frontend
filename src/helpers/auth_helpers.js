@@ -13,11 +13,11 @@ export function initGoogleAPI() {
   document.body.appendChild(script);
 }
 
+//  Функции для работы с localStorage - чтение/запись/очистка
 export function writeToLocalStorage(token, googleToken, userName, userId) {
   if (!token || !googleToken || !userName || !userId) {
     return false;
   }
-  // console.log(token + "|" + googleToken + "|" + userName + "|" + userId);
   localStorage.setItem("token", token);
   localStorage.setItem("googleToken", googleToken);
   localStorage.setItem("userName", userName);

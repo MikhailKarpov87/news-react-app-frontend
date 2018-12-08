@@ -9,6 +9,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { readFromLocalStorage } from "./helpers/auth_helpers";
+import { initGoogleAPI } from "./helpers/auth_helpers";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
 import PostsList from "./routes/posts_list";
@@ -31,6 +32,9 @@ const initialState = {
   isDeleted: null
 };
 
+//  Инициализируем Google API
+initGoogleAPI();
+
 //  Redux DevTools для dev mode
 //  https://github.com/zalmoxisus/redux-devtools-extension
 let store;
@@ -42,7 +46,7 @@ if (
   const myStore = composeWithDevTools(applyMiddleware(jwt, thunk))(createStore);
   store = myStore(reducers, initialState);
 } else {
-  store = createStore(reducers, initialState, applyMiddleware(thunk));
+  store = createStore(reducers, initialState, applyMiddleware(jwt, thunk));
 }
 
 //  Checking local storage for JWT token
