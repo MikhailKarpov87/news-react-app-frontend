@@ -4,6 +4,8 @@ React/Redux приложение ленты новостей с Google Sign In �
 
 <img width="40%" src="https://s3.eu-central-1.amazonaws.com/github--projects/screen1.jpg" />
 
+[**Демо**](http://news-app-demo.getyoumedia.com/news)
+
 ### О себе
 
 - Имя, возраст и откуда вы?
@@ -47,7 +49,11 @@ React/Redux приложение ленты новостей с Google Sign In �
 - `git clone` или скачайте этот репозиторий
 - `npm install` для установки зависимостей
 - Проверьте URL для бэкенда в файле `/src/config.js`
-- Сохраните свой Google Client ID в файле `/.env`:  
-  `REACT_APP_GOOGLE_CLIENT_ID=yourclientid.googleusercontent.com`
+- Сохраните свой Google Client ID в файле `/.env`:
+
+  ```
+  REACT_APP_GOOGLE_CLIENT_ID=yourclientid.googleusercontent.com
+  ```
+
 - `npm start` для запуска локального dev-сервера
 - `npm run build` для production сборки

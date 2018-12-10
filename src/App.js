@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
-import { jwt } from "./middleware/jwt";
+import { jwt } from "./middlewares/jwt";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -70,6 +70,7 @@ const App = () => {
               <Route exact path="/news/:id/edit" component={EditPost} />
               <Route exact path="/news/:id" component={PostFull} />
               <Route exact path="/news" component={PostsList} />
+              <Route exact path="/" component={PostsList} />
               <Route path="*" component={Info} />
             </Switch>
             <Footer />
