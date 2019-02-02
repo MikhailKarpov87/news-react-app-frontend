@@ -2,9 +2,11 @@
 
 React/Redux приложение ленты новостей с Google Sign In авторизацией
 
+React/Redux news app with Google Sign In authorization feature
+
 <img width="40%" src="https://s3.eu-central-1.amazonaws.com/github--projects/screen1.jpg" />
 
-[**Демо**](http://news-app-demo.getyoumedia.com/news)
+[**Демо / Demo**](http://news-app-demo.getyoumedia.com/news)
 
 ### О себе
 
