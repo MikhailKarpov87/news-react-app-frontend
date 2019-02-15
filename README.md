@@ -1,12 +1,18 @@
 # [Тестовое задание #3](https://maxpfrontend.ru/zametki/testovoe-zadanie-3/)
 
-React/Redux приложение ленты новостей с Google Sign In авторизацией
-
-React/Redux news app with Google Sign In authorization feature
-
 <img width="40%" src="https://s3.eu-central-1.amazonaws.com/github--projects/screen1.jpg" />
 
-[**Демо / Demo**](http://news-app-demo.getyoumedia.com/news)
+React/Redux приложение ленты новостей с Google Sign In авторизацией
+
+React/Redux news app with Google Sign In authorization feature.
+
+🇺🇸 This project has russian README and code comments so if you need more details about this project feel free to contact me.
+
+[**Демо / Demo**](http://news-app-demo.getyoumedia.com/news)\*
+
+\*Бэкенд сервер был заблокирован всеми любимым РКН ✌️ Используйте прокси для просмотра демо
+
+Backend server was blocked by RKN ✌️ Use proxy to view the demo if you're trying to view it from Russia.\*
 
 ### О себе
 
