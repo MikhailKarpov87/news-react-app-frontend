@@ -62,7 +62,7 @@ const App = () => {
   return (
     <div className="main-container">
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL || ""}>
           <>
             <Header />
             <Switch>
