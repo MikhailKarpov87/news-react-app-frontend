@@ -33,8 +33,5 @@ export function readFromLocalStorage() {
 }
 
 export function clearLocalStorage() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("googleToken");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("userId");
+  localStorage.clear();
 }
